@@ -1,5 +1,5 @@
-##These functions cache the inverse of a matrix instead of repeated computation.
-##This saves a lot of computation time when huge matrices are involved.
+##  These functions cache the inverse of a matrix instead of repeated computation.
+##  This saves a lot of computation time when huge matrices are involved.
 
 ##  The function below returns a list of 4 get and set functions
 ##  that create a special "matrix" object and cache its inverse.
@@ -24,7 +24,7 @@ makeCacheMatrix <- function(x=matrix()){
   
   ##Save Inverse of the matrix
   setInverse <- function(inverse){
-    Inv<<-inverse
+    Inv <<- inverse
   }
   
   ##Retrive Inverse of the matrix
@@ -32,7 +32,7 @@ makeCacheMatrix <- function(x=matrix()){
     Inv
   }
   
-  ##Return the list of function names
+  ##Returns the list of function names
   list(setMatrix=setMatrix,
        getMatrix=getMatrix,
        setInverse=setInverse,
@@ -40,9 +40,8 @@ makeCacheMatrix <- function(x=matrix()){
 }
 
 
-##  The function below computes inverse of the matrix returned by 
-##  makeCacheMatrix function above. If inverse already exists for the same matrix,
-##  then cached inverse is displayed with message "Caching Inverse".
+##  The function below computes inverse of the matrix returned by makeCacheMatrix function above. 
+##  If inverse already exists for the same matrix, then cached inverse is displayed with message "Caching Inverse".
 
 cacheSolve <- function(x, ...){
 
