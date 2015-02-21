@@ -1,9 +1,9 @@
 ##  Matrix inverse can be a time consuming operation especially for huge matrices. 
 ##  The functions below provide an example of how to cache the inverse of a matrix
-##  instead of repeated computation, thus improving the code performance.
+##  instead of repeated computation.
 
 
-##  The function below returns a list of 4 get and set functions
+##  The function below returns a list of get and set functions
 ##  that create a special "matrix" object and cache its inverse.
 
 makeCacheMatrix <- function(x=matrix()){
@@ -12,11 +12,11 @@ makeCacheMatrix <- function(x=matrix()){
   Inv <- matrix()
  
   ##  Save the matrix
-  ##  <<- operator makes the variables assessible outside setMatrix() function
+  ##  <<- operator makes variables assessible outside setMatrix() function
   setMatrix <- function(y){
     
     x <<-y
-    Inv <<- matrix()
+    Inv <<- matrix()#reset inverse for new matrix
   }
   
   ##  Retrive the matrix
@@ -24,7 +24,7 @@ makeCacheMatrix <- function(x=matrix()){
     x
   }
   
-  ##  Save Inverse of the matrix
+  ##  Cache Inverse of the matrix
   setInverse <- function(inverse){
     Inv <<- inverse
   }
@@ -43,8 +43,8 @@ makeCacheMatrix <- function(x=matrix()){
 
 
 ##  The function below computes inverse of the matrix returned by makeCacheMatrix function above. 
-##  If inverse already exists for the matrix, then display the cached inverse.
-##  Else compute inverse and save the results.
+##  If inverse already exists, then display the cached value.
+##  Else compute and set inverse and display the results.
 
 cacheSolve <- function(x, ...){
 
@@ -59,9 +59,10 @@ cacheSolve <- function(x, ...){
   }
   
 
-  ##  Compute and save Inverse
+  ##  Compute Inverse
   Inv <- solve(x$getMatrix(),...)  
   
+  ##  Save Inverse
   x$setInverse(Inv) 
   
   Inv
